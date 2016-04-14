@@ -1,0 +1,43 @@
+<widget typeId="org.csstudio.opibuilder.widgets.linkingContainer" version="1.0.0">
+<macros>
+  <include_parent_macros>true</include_parent_macros>
+  <HEAD_NAME>HEAD_NAME_INSERT</HEAD_NAME>
+  <DEVICE_NAME>DEVICE_NAME_INSERT</DEVICE_NAME>
+</macros>
+<visible>true</visible>
+<wuid>-41996bc6:14a3404ca9f:-7ad9</wuid>
+<auto_size>true</auto_size>
+<scripts />
+<zoom_to_fit>false</zoom_to_fit>
+<height>HEIGHT_INSERT</height>
+<name>Linking Container</name>
+<scale_options>
+  <width_scalable>true</width_scalable>
+  <height_scalable>true</height_scalable>
+  <keep_wh_ratio>false</keep_wh_ratio>
+</scale_options>
+<opi_file>OPI_FILE_INSERT</opi_file>
+<foreground_color>
+  <color red="192" green="192" blue="192" />
+</foreground_color>
+<background_color>
+  <color red="240" green="240" blue="240" />
+</background_color>
+<group_name></group_name>
+<enabled>true</enabled>
+<widget_type>Linking Container</widget_type>
+<font>
+  <opifont.name fontName="Segoe UI" height="9" style="0">Default</opifont.name>
+</font>
+<width>WIDTH_INSERT</width>
+<border_style>0</border_style>
+<rules />
+<border_width>1</border_width>
+<border_color>
+  <color red="0" green="128" blue="255" />
+</border_color>
+<actions hook="false" hook_all="false" />
+<y>Y_POSITION_INSERT</y>
+<x>X_POSITION_INSERT</x>
+<tooltip></tooltip>
+</widget>

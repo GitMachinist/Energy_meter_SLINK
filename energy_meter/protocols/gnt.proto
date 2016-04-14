@@ -1,0 +1,59 @@
+# Stream Device Protocol for the Gentec S-Link Power & Energy Monitor
+# Pete Owens 14/7/2014
+
+terminator   = CR LF;
+replytimeout = 1000;
+readtimeout  = 1000;
+
+set_atten   { out "*AT\$1%{0|1}"; }
+reset       { out "*RST";         }
+start_acq   { wait 1000;
+              out "*SS\$1001";
+              out "*VNM";
+              out "*CA\$1";
+            }
+get_data    { out "*CV\$1";       in "\$1:%g"; }
+set_antic   { out "*AN\$1%{0|1}"; }
+set_wavelen { out "*PW\$1%05d";   }
+set_triglev { out "*TL\$1%04.1f"; }
+get_status  { out "*ST\$1";       in ":00000%4x";
+                                  in ":00001%(\$2:StatScale.VAL)4x";
+                                  in ":00002%(\$2:ReadTrigLev.RVAL)4x";
+                                  in ":00003%*4x";
+                                  in ":00004000%(\$2:StatAttenuator.VAL){0|1}";
+                                  in ":00005000%(\$2:StatExtTrig.VAL){0|1}";
+                                  in ":00006000%(\$2:StatAnticipation.VAL){0|1}";
+                                  in ":00007000%(\$2:StatMode.VAL){0|1}";
+                                  in ":100000000";
+	     }
+ini_status  { out "*ST\$1";       in ":00000%(\$2:SetWavelength.VAL)4x";
+                                  in ":00001%(\$2:SelScale)4x";
+                                  in ":00002%(\$2:InitTrigLev.RVAL)4x";
+                                  in ":00003%*4x";
+                                  in ":00004000%(\$2:SelAttenuator.VAL){0|1}";
+                                  in ":00005000%(\$2:SelExtTrig.VAL){0|1}";
+                                  in ":00006000%(\$2:SelAnticipation.VAL){0|1}";
+                                  in ":00007000%(\$2:SelMode.VAL){0|1}";
+                                  in ":100000000";
+            }
+set_ascii   { wait 1000;
+              out "*SS\$1001";   }
+
+scaleup     { out "*S%{D|U}\$1";  }
+set_exttrig { out "*ET\$1%{0|1}"; }
+set_mode    { out "*EM\$1%{0|1}"; }
+get_name    { out "*NA\$1";       in "%40c"; }
+get_serial  { out "*SN\$1";       in "%40c"; }
+get_value   { out "*CV\$1";       in "\$1:%g";  }
+get_value_int   {   replyTimeout = 80; readTimeout  = 80; in "\$1:%g";  }
+get_range   { out "*RG\$1";       in ":00000%4x";
+                                  in ":00001%(\$2:StatMax.VAL)4x";
+                                  in ":100000000";
+            }
+set_scale   { out "*SC\$1%02d";   }
+probeConnection  { out "*NA\$1";       in "%40c"; }
+set_polling { out "*VN%{P|M}";    }
+start_stat { out "*VN%{P|M}";    }
+set_acq     { out "*C%{S|A}\$1";  }
+
+######################################################################
